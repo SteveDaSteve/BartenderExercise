@@ -1,0 +1,20 @@
+﻿@model BartenderExercise.Models.Order;
+@{
+    ViewData["Title"] = "Editing Order";
+}
+
+<h1>Editing @{@Model.CustomerName}'s Order</h1>
+
+<form asp-controller="Bar" asp-action="SubmitEditedOrder">
+    <input type="hidden" asp-for="OrderID" value="@Model.OrderID"/>
+    <input type="hidden" asp-for="OrderTime" value="@Model.OrderTime" />
+    <input type="hidden" asp-for="Status" value="@Model.Status" />
+
+    <label for="Name">Customer Name:</label>
+    <input id="Name" type="text" asp-for="CustomerName" value="@Model.CustomerName" />
+
+    <label for="Name">Drink ID:</label>
+    <input id="Drink" type="text" asp-for="DrinkId">
+    <input type="submit"/>
+</form>
+

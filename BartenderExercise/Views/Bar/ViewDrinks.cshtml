@@ -1,0 +1,25 @@
+﻿@using BartenderExercise.Models.Repositories
+@model IEnumerable<BartenderExercise.Models.Drink>
+@{
+    ViewData["Title"] = "Menu";
+}
+<h1>Drink Menu</h1>
+<!--Bootstrap cards showing all of the orders with buttons-->
+<form>
+	<label for="Name">Customer Name:</label>
+    <input type="text" id="Name"/>
+    <div class="d-grid">
+    @foreach(var d in Model) {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <strong><h5 class="card-title">@d.Name</h5></strong>
+                <p class="card-text">@d.Description</p>
+                <p class="card-text">Alcahol Content: @d.AlcaholContent</p>
+            </div>
+            <div class="card-footer">
+                <a type="submit" class="btn btn-primary" asp-controller="Bar" asp-action="AddOrder" asp-route-DrinkID="@d.DrinkID" asp-route-Name="Bob">@d.Price</a>
+            </div>
+        </div>
+    }
+    </div>
+</form>

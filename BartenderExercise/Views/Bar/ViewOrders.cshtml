@@ -1,0 +1,68 @@
+﻿@using BartenderExercise.Models.Repositories
+@model BartenderExercise.Models.Repositories.OrderRepository
+@{
+	ViewData["Title"] = "Order Queue";
+}
+<h1>Order Queue</h1>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Drink</th>
+			<th>Time</th>
+			<th>Status</th>
+			<th>Fufill</th>
+			<th>Edit</th>
+			<th>Cancel</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var o in Model.Orders)
+		{
+			@if(o.Status == "Pending")
+			{
+				<tr>
+					<td>@o.CustomerName</td>
+					<td>@o.DrinkId</td>
+					<td>@o.OrderTime</td>
+					<td>@o.Status</td>
+					<td><a class="btn btn-primary" asp-controller="Bar" asp-action="FufillOrder" asp-route-OrderID="@o.OrderID">Fufull Order</a></td>
+					<td><a class="btn btn-primary" asp-controller="Bar" asp-action="EditOrder" asp-route-OrderID="@o.OrderID">Edit Order</a></td>
+					<td><a class="btn btn-danger" asp-controller="Bar" asp-action="CancelOrder" asp-route-OrderID="@o.OrderID">Cancel Order</a></td>
+					<td><a class="btn btn-danger" asp-controller="Bar" asp-action="DeleteOrder" asp-route-OrderID="@o.OrderID">Delete Order</a></td>
+				</tr>
+			}
+			
+		}
+	</tbody>
+</table>
+
+<h1>Past Orders</h1>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Drink</th>
+			<th>Time</th>
+			<th>Status</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var o in Model.Orders)
+		{
+			@if (o.Status != "Pending")
+			{
+				<tr>
+					<td>@o.CustomerName</td>
+					<td>@o.DrinkId</td>
+					<td>@o.OrderTime</td>
+					<td>@o.Status</td>
+					<td><a class="btn btn-danger" asp-controller="Bar" asp-action="DeleteOrder" asp-route-OrderID="@o.OrderID">Delete Order</a></td>
+				</tr>
+			}
+
+		}
+	</tbody>
+</table>

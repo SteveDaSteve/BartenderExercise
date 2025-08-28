@@ -3,6 +3,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2>Welcome to the MVC Bar</h2>
+    <h6>Moonshine, Vodka, and Cocktails</h6>
+    <div class="text-start">
+        <ul>
+            <li><a asp-controller="Bar" asp-action="ViewDrinks">View Drink Menu</a></li>
+            <li><a asp-controller="Bar" asp-action="ViewOrders">View Order Queue</a></li>
+        </ul>
+	</div>
 </div>
