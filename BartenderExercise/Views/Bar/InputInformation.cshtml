@@ -1,0 +1,18 @@
+﻿@model BartenderExercise.Models.Order;
+@{
+    ViewData["Title"] = "Complete Order";
+}
+
+<h1>Complete Your Order</h1>
+<h3>Please complete your order by entering the following information:</h3>
+<form asp-controller="Bar" asp-action="SubmitCustomerInfo">
+	<label for="Name">Customer Name:</label>
+	<input type="text" asp-for="CustomerName" id="Name" />
+	<input type="hidden" asp-for="DrinkId" />
+	<input type="hidden" asp-for="OrderID" />
+	<input type="hidden" asp-for="Status" />
+	<input type="hidden" asp-for="OrderTime" />
+	<input type="submit" value="Submit"/>
+</form>
+
+<p>This form can be used to request additional information, like payment details or special requests.</p>

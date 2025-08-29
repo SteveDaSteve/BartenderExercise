@@ -60,17 +60,26 @@ namespace BartenderExercise.Controllers
 		}
 
 		// Adds a new order to the order list, then sends the user back to the order list
-		public IActionResult AddOrder(int DrinkID, string Name)
+		public IActionResult AddOrder(int DrinkID)
 		{
 			Order o = new Order();
 			o.DrinkId = DrinkID;
-			o.CustomerName = Name;
 			o.OrderTime = DateTime.Now;
 			o.Status = "Pending";
 
 			_orderRepository.CreateOrder(o);
 			_orderRepository.SaveChanges();
-			
+
+			// Redirect to the InputInformation view to get customer details, passing the new order as the model
+			return View("InputInformation", o);
+		}
+
+		// Receives the submitted customer information for the new order
+		public IActionResult SubmitCustomerInfo(Order o)
+		{
+			_orderRepository.UpdateOrder(o);
+			_orderRepository.SaveChanges();
+
 			return View("ViewOrders", _orderRepository);
 		}
 
